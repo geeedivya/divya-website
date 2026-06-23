@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Divya Galagali</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet" />
+  <script src="content.js"></script>
+  <style>
+    /* ── TOKENS ─────────────────────────────────────────────── */
+    :root {
+      --cream:        #FAF8F4;
+      --cream-dark:   #EDE7DE;
+      --brown:        #2C2118;
+      --brown-mid:    #5C4A3A;
+      --warm-gray:    #9B8B80;
+      --terra:        #C4673A;
+      --terra-light:  #E8C4AD;
+      --forest:       #3D5A47;
+      --forest-light: #D0DDD3;
+
+      --serif: 'Cormorant Garamond', Georgia, serif;
+      --sans:  'DM Sans', system-ui, sans-serif;
+
+      --max: 1100px;
+      --pad: clamp(1.5rem, 5vw, 4rem);
+    }
+
+    /* ── RESET ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--cream);
+      color: var(--brown);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ── TYPE ───────────────────────────────────────────────── */
+    .label {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terra);
+      display: block;
+      margin-bottom: 1rem;
+    }
+    .label.green { color: var(--forest); }
+
+    h2 {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--brown);
+      margin-bottom: 1.75rem;
+    }
+    h3 {
+      font-family: var(--serif);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--brown);
+      margin-bottom: 0.5rem;
+    }
+
+    /* ── LAYOUT ─────────────────────────────────────────────── */
+    .wrap {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 var(--pad);
+    }
+    section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: clamp(2.5rem, 5vw, 4rem) var(--pad);
+      border-top: 1px solid var(--cream-dark);
+    }
+
+    /* ── NAV ────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(250, 248, 244, 0.94);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--cream-dark);
+      transition: box-shadow 0.3s;
+    }
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 1rem var(--pad);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .nav-name {
+      font-family: var(--serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      flex-shrink: 0;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.75rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.8rem;
+      color: var(--brown-mid);
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--terra); }
+    .nav-cta {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--terra);
+      border: 1px solid var(--terra);
+      padding: 0.38rem 0.95rem;
+      border-radius: 2px;
+      transition: background 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+    .nav-cta:hover { background: var(--terra); color: white; }
+    .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; padding: 4px; }
+    .hamburger span { display: block; width: 20px; height: 1.5px; background: var(--brown); }
+
+    /* ── PAGE HEADER + ABOUT ────────────────────────────────── */
+    #top {
+      padding: clamp(5rem, 10vw, 7rem) var(--pad) clamp(2rem, 4vw, 3rem);
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+    .top-name {
+      font-family: var(--serif);
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--forest);
+      margin-bottom: 1rem;
+    }
+    .top-subheading {
+      font-family: var(--serif);
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      font-style: italic;
+      color: var(--forest);
+      line-height: 1.5;
+      max-width: 560px;
+      margin-bottom: 0.5rem;
+    }
+    .top-location {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-bottom: 3rem;
+    }
+    .about-body {
+      max-width: 660px;
+      border-top: 1px solid var(--cream-dark);
+      padding-top: 2.5rem;
+    }
+    .about-body p {
+      font-size: 0.975rem;
+      color: var(--brown);
+      line-height: 1.85;
+    }
+    .about-body p + p { margin-top: 1.1rem; }
+
+    /* ── WORK ───────────────────────────────────────────────── */
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 2px;
+      margin-bottom: 4rem;
+    }
+    .work-card {
+      background: var(--cream-dark);
+      padding: 1.6rem;
+      transition: background 0.2s;
+    }
+    .work-card:hover { background: #E4D9CE; }
+    .work-card h3 { margin-bottom: 0.5rem; }
+    .work-card p { font-size: 0.875rem; color: var(--brown-mid); line-height: 1.7; }
+
+    .exp-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-bottom: 1.25rem;
+    }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 3rem;
+      padding: 2rem 0;
+      border-top: 1px solid var(--cream-dark);
+    }
+
+    .exp-company {
+      font-family: var(--serif);
+      font-size: 1.25rem;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+    .exp-role { font-size: 0.75rem; color: var(--terra); letter-spacing: 0.03em; margin-bottom: 0.2rem; }
+    .exp-period { font-size: 0.72rem; color: var(--warm-gray); }
+    .exp-bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .exp-bullets li {
+      font-size: 0.875rem;
+      color: var(--brown-mid);
+      line-height: 1.75;
+      padding-left: 1rem;
+      position: relative;
+      margin-bottom: 0.4rem;
+    }
+    .exp-bullets li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.65em;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--terra-light);
+    }
+
+    .work-contact {
+      margin-top: 2rem;
+      font-size: 0.925rem;
+      color: var(--brown-mid);
+    }
+    .work-contact a {
+      color: var(--terra);
+      border-bottom: 1px solid var(--terra-light);
+      padding-bottom: 1px;
+      margin-left: 0.25rem;
+      transition: border-color 0.2s;
+    }
+    .work-contact a:hover { border-color: var(--terra); }
+
+    /* ── HOW I WORK ─────────────────────────────────────────── */
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 3rem;
+    }
+    .how-item::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--terra);
+      margin-bottom: 0.9rem;
+    }
+    .how-item h3 { margin-bottom: 0.5rem; }
+    .how-item p { font-size: 0.875rem; color: var(--brown-mid); line-height: 1.8; }
+
+    /* ── NEXT ───────────────────────────────────────────────── */
+    .next-intro {
+      font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+      color: var(--brown);
+      line-height: 1.8;
+      max-width: 620px;
+      margin-bottom: 2.5rem;
+    }
+    .ind-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-bottom: 1rem;
+    }
+    .industries { margin-bottom: 2.5rem; }
+    .industry-item {
+      font-family: var(--serif);
+      font-size: clamp(1.4rem, 2.8vw, 1.9rem);
+      font-weight: 400;
+      color: var(--brown);
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--cream-dark);
+      transition: color 0.2s, padding-left 0.2s;
+    }
+    .industries .industry-item:first-child { border-top: 1px solid var(--cream-dark); }
+    .industry-item:hover { color: var(--forest); padding-left: 0.4rem; }
+    .next-closing {
+      font-size: 0.9rem;
+      color: var(--brown-mid);
+      margin-bottom: 1.75rem;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: white;
+      background: var(--terra);
+      padding: 0.8rem 1.6rem;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .cta-btn::after { content: 'arrow_forward'; font-family: 'Material Icons'; font-size: 1rem; content: '→'; transition: transform 0.2s; }
+    .cta-btn:hover { background: #A8552E; }
+    .cta-btn:hover::after { transform: translateX(4px); }
+
+    /* ── PERSONAL ───────────────────────────────────────────── */
+    #personal { border-top: 1px solid var(--cream-dark); }
+    .personal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(2rem, 5vw, 5rem);
+      align-items: start;
+      padding-top: 0.25rem;
+    }
+    .personal-right { margin-top: 0; }
+    .personal-body p {
+      font-size: 0.975rem;
+      color: var(--brown);
+      line-height: 1.85;
+    }
+    .personal-body p + p { margin-top: 1.1rem; }
+    .personal-links { display: flex; flex-direction: column; gap: 0.65rem; margin-top: 1.75rem; }
+    .personal-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.875rem;
+      color: var(--brown-mid);
+      transition: color 0.2s;
+    }
+    .personal-link:hover { color: var(--forest); }
+    .link-icon {
+      width: 32px; height: 32px;
+      border: 1px solid var(--cream-dark);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.68rem;
+      flex-shrink: 0;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    }
+    .personal-link:hover .link-icon { border-color: var(--forest); background: var(--forest); color: white; }
+    .personal-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: center 15%;
+      border-radius: 2px;
+      display: block;
+    }
+    .personal-photo-placeholder {
+      width: 100%;
+      aspect-ratio: 3/4;
+      background: var(--cream-dark);
+      border-radius: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: var(--warm-gray);
+      letter-spacing: 0.08em;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    /* ── FOOTER ─────────────────────────────────────────────── */
+    footer {
+      background: var(--brown);
+      color: var(--cream);
+      padding: clamp(3rem, 6vw, 4.5rem) var(--pad);
+      margin-top: 0;
+    }
+    .footer-inner { max-width: var(--max); margin: 0 auto; }
+    .footer-top {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      margin-bottom: 1.75rem;
+    }
+    .footer-headline {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.1;
+    }
+    .footer-headline em { font-style: italic; color: var(--terra-light); }
+    .footer-email {
+      font-size: 0.875rem;
+      color: var(--terra-light);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+    .footer-email:hover { border-color: var(--terra-light); }
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .footer-copy { font-size: 0.72rem; color: rgba(250,248,244,0.35); }
+    .footer-ig { font-size: 0.78rem; color: rgba(250,248,244,0.5); transition: color 0.2s; }
+    .footer-ig:hover { color: var(--terra-light); }
+
+    /* ── MOBILE ─────────────────────────────────────────────── */
+    @media (max-width: 800px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%; left: 0; right: 0;
+        background: var(--cream);
+        padding: 1.25rem var(--pad) 1.75rem;
+        gap: 1.1rem;
+        border-bottom: 1px solid var(--cream-dark);
+      }
+      .hamburger { display: flex; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.75rem; }
+      .how-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .personal-grid { grid-template-columns: 1fr; }
+      .footer-top { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#top" class="nav-name" id="nav-name"></a>
+    <ul class="nav-links" id="nav-links"></ul>
+    <a href="#" class="nav-cta" id="nav-cta"></a>
+    <div class="hamburger" id="hamburger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- PAGE HEADER + ABOUT -->
+<div id="top">
+  <h1 class="top-name" id="top-name"></h1>
+  <p class="top-subheading" id="top-subheading"></p>
+  <p class="top-location" id="top-location"></p>
+  <div class="about-body" id="about-body"></div>
+</div>
+
+<!-- WORK -->
+<section id="work">
+  <span class="label" id="work-label"></span>
+  <h2 id="work-heading"></h2>
+  <div class="work-grid" id="work-grid"></div>
+  <p class="exp-label" id="exp-label"></p>
+  <div id="exp-list"></div>
+  <div class="work-contact" id="work-contact"></div>
+</section>
+
+<!-- HOW I WORK -->
+<section id="how-i-work">
+  <h2 id="how-heading"></h2>
+  <div class="how-grid" id="how-grid"></div>
+</section>
+
+<!-- NEXT -->
+<section id="next">
+  <span class="label" id="next-label"></span>
+  <h2 id="next-heading"></h2>
+  <p class="next-intro" id="next-intro"></p>
+  <p class="ind-label" id="ind-label"></p>
+  <div class="industries" id="industries"></div>
+  <p class="next-closing" id="next-closing"></p>
+  <a class="cta-btn" id="next-cta"></a>
+</section>
+
+<!-- PERSONAL -->
+<section id="personal">
+  <div class="personal-grid">
+    <div>
+      <span class="label green" id="personal-label"></span>
+      <h2 id="personal-heading"></h2>
+      <div class="personal-body" id="personal-body"></div>
+      <div class="personal-links" id="personal-links"></div>
+    </div>
+    <div id="personal-photo-wrap"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <p class="footer-headline">Let's build<br><em>something good.</em></p>
+      <a class="footer-email" id="footer-email"></a>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-copy" id="footer-copy"></span>
+      <a class="footer-ig" id="footer-ig" target="_blank" rel="noopener"></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function render() {
+  const C = CONTENT;
+
+  // Nav
+  document.title = C.nav.name;
+  document.getElementById('nav-name').textContent = C.nav.name;
+  const navLinks = document.getElementById('nav-links');
+  C.nav.links.forEach((label, i) => {
+    const li = document.createElement('li');
+    const a = document.createElement('a');
+    a.href = '#' + C.nav.linkIds[i];
+    a.textContent = label;
+    li.appendChild(a);
+    navLinks.appendChild(li);
+  });
+  const navCta = document.getElementById('nav-cta');
+  navCta.textContent = C.nav.cta;
+  navCta.href = 'mailto:' + C.nav.ctaEmail;
+
+  // Header
+  document.getElementById('top-name').textContent = C.header.name;
+  document.getElementById('top-subheading').textContent = C.header.subheading;
+  document.getElementById('top-location').textContent = C.header.location;
+
+  // About
+  const aboutBody = document.getElementById('about-body');
+  C.about.body.forEach(text => {
+    const p = document.createElement('p');
+    p.textContent = text;
+    aboutBody.appendChild(p);
+  });
+
+  // Work - cards
+  document.getElementById('work-label').textContent = C.work.sectionLabel;
+  document.getElementById('work-heading').textContent = C.work.heading;
+  const workGrid = document.getElementById('work-grid');
+  C.work.items.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'work-card';
+    div.innerHTML = `<h3>${item.title}</h3><p>${item.description}</p>`;
+    workGrid.appendChild(div);
+  });
+
+  // Work - experience
+  document.getElementById('exp-label').textContent = C.work.featuredLabel;
+  const expList = document.getElementById('exp-list');
+  C.work.featured.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'exp-item';
+    const bullets = item.bullets.map(b => `<li>${b}</li>`).join('');
+    div.innerHTML = `
+      <div>
+        <p class="exp-company">${item.company}</p>
+        <p class="exp-role">${item.role}</p>
+        <p class="exp-period">${item.period}</p>
+      </div>
+      <ul class="exp-bullets">${bullets}</ul>`;
+    expList.appendChild(div);
+  });
+
+  // Work - contact line
+  const contactEl = document.getElementById('work-contact');
+  contactEl.innerHTML = `${C.work.contactLine}<a href="mailto:${C.work.contactEmail}">${C.work.contactEmail}</a>`;
+
+  // How I Work
+  document.getElementById('how-heading').textContent = C.howIWork.heading;
+  const howGrid = document.getElementById('how-grid');
+  C.howIWork.items.forEach(item => {
+    const div = document.createElement('div');
+    div.className = 'how-item';
+    div.innerHTML = `<h3>${item.title}</h3><p>${item.description}</p>`;
+    howGrid.appendChild(div);
+  });
+
+  // Next
+  document.getElementById('next-label').textContent = C.next.sectionLabel;
+  document.getElementById('next-heading').textContent = C.next.heading;
+  document.getElementById('next-intro').textContent = C.next.intro;
+  document.getElementById('ind-label').textContent = C.next.industriesLabel;
+  const industriesEl = document.getElementById('industries');
+  C.next.industries.forEach(name => {
+    const div = document.createElement('div');
+    div.className = 'industry-item';
+    div.textContent = name;
+    industriesEl.appendChild(div);
+  });
+  document.getElementById('next-closing').textContent = C.next.closing;
+  const nextCta = document.getElementById('next-cta');
+  nextCta.textContent = C.next.ctaLabel;
+  nextCta.href = 'mailto:' + C.next.ctaEmail;
+
+  // Personal
+  document.getElementById('personal-label').textContent = C.personal.sectionLabel;
+  document.getElementById('personal-heading').textContent = C.personal.heading;
+  const personalBody = document.getElementById('personal-body');
+  C.personal.body.forEach(text => {
+    const p = document.createElement('p');
+    p.textContent = text;
+    personalBody.appendChild(p);
+  });
+  const personalLinks = document.getElementById('personal-links');
+  const igLink = document.createElement('a');
+  igLink.href = C.personal.instagramUrl;
+  igLink.target = '_blank';
+  igLink.rel = 'noopener';
+  igLink.className = 'personal-link';
+  igLink.innerHTML = `<span class="link-icon">ig</span><span>${C.personal.instagramHandle}</span>`;
+  personalLinks.appendChild(igLink);
+  if (C.personal.creativeWebsiteUrl) {
+    const siteLink = document.createElement('a');
+    siteLink.href = C.personal.creativeWebsiteUrl;
+    siteLink.target = '_blank';
+    siteLink.className = 'personal-link';
+    siteLink.innerHTML = `<span class="link-icon">↗</span><span>${C.personal.creativeWebsiteLabel}</span>`;
+    personalLinks.appendChild(siteLink);
+  }
+
+  // Personal photo
+  const photoWrap = document.getElementById('personal-photo-wrap');
+  if (C.personal.photo) {
+    const img = document.createElement('img');
+    img.src = C.personal.photo;
+    img.alt = C.personal.photoAlt;
+    img.className = 'personal-photo';
+    img.onerror = function() {
+      this.replaceWith(makePlaceholder());
+    };
+    photoWrap.appendChild(img);
+  } else {
+    photoWrap.appendChild(makePlaceholder());
+  }
+  function makePlaceholder() {
+    const div = document.createElement('div');
+    div.className = 'personal-photo-placeholder';
+    div.textContent = 'Add your photo — save it to this folder and update content.js';
+    return div;
+  }
+
+  // Footer
+  const fe = document.getElementById('footer-email');
+  fe.textContent = C.footer.email;
+  fe.href = 'mailto:' + C.footer.email;
+  document.getElementById('footer-copy').textContent = '© ' + C.footer.copyright;
+  const fig = document.getElementById('footer-ig');
+  fig.textContent = '@geeedivya';
+  fig.href = C.footer.instagram;
+}
+
+function toggleNav() {
+  document.getElementById('nav-links').classList.toggle('open');
+}
+
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').style.boxShadow =
+    window.scrollY > 20 ? '0 1px 24px rgba(44,33,24,0.07)' : 'none';
+});
+
+render();
+</script>
+</body>
+</html>
