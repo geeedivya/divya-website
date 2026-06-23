@@ -9,7 +9,7 @@ const CONTENT = {
   // ── NAVIGATION ──────────────────────────────────────────────────────────────
   nav: {
     name: "DG",
-    links: ["Work", "How I Work", "Next", "Personal"],
+    links: ["What I do", "How I work", "What's next", "Personal"],
     linkIds: ["work", "how-i-work", "next", "personal"],
     cta: "Let's talk",
     ctaEmail: "divya.galagali@gmail.com"
