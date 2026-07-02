@@ -56,7 +56,7 @@ const CONTENT = {
     featuredLabel: "Experience",
     featured: [
       {
-        company: "Plynth (Early Stage / Pre-Seed)",
+        company: "Plynth (Early Stage)",
         role: "Consultant",
         period: "2026 - Present",
         bullets: [
