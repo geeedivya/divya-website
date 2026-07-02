@@ -56,13 +56,13 @@ const CONTENT = {
     featuredLabel: "Experience",
     featured: [
       {
-        company: "Plynth",
+        company: "Plynth (Early Stage / Pre-Seed)",
         role: "Consultant",
         period: "2026 - Present",
         bullets: [
           "Built the onboarding experience and website copy.",
-          "Wrote the brand and voice document that shapes everything from creator briefs to blog articles.",
-          "Set up analytics foundation - from tools to what metrics to track.",
+          "Developed the brand and voice document that shapes everything from creator briefs to blogs.",
+          "Set up the analytics foundation - from tools to what metrics to track.",
           "Shaped the roadmap for launch across channels and worked closely with the founder on core product flows."
         ]
       },
